@@ -1,0 +1,25 @@
+.fab {
+  position: fixed;
+  right: 2.2rem;
+  bottom: 2.2rem;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ff9347, #ca3c15 85%);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 2.2rem;
+  box-shadow: 0 5px 24px rgba(255, 146, 71, 0.24);
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.14s, box-shadow 0.16s;
+}
+
+.fab:hover {
+  background: linear-gradient(135deg, #ec6d26 10%, #ab2b0b 95%);
+  box-shadow: 0 7px 32px rgba(255, 146, 71, 0.55);
+  transform: scale(1.05);
+}

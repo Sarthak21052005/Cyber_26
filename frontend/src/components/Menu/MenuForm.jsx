@@ -1,5 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { menuAPI } from '../../services/api';
+import '../../styles/Forms.css';
+import '../../styles/Global.css';
+
+// ... rest of your MenuForm.jsx code remains the same
+
 
 function MenuForm({ item, onClose }) {
   const [formData, setFormData] = useState({

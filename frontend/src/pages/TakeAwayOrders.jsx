@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { orderAPI } from '../services/api';
+import '../styles/Kitchen.css';
+import '../styles/Orders.css';
+import '../styles/Global.css';
+
 
 function TakeawayOrders() {
   const [orders, setOrders] = useState([]);

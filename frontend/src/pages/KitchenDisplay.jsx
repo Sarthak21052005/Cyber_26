@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { orderAPI } from '../services/api';
+import '../styles/Kitchen.css';
+import '../styles/Global.css';
 
 function KitchenDisplay() {
   const [activeOrders, setActiveOrders] = useState([]);

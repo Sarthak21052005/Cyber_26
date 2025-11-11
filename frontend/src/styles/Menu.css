@@ -118,3 +118,70 @@
     grid-template-columns: 1fr;
   }
 }
+/* Menu Footer Enhancements */
+.menu-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #6366f1;
+  flex-shrink: 0;
+}
+
+/* Availability Toggle Button */
+.btn-availability {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.btn-availability.available {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.btn-availability.available:hover {
+  background: #bbf7d0;
+}
+
+.btn-availability.unavailable {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.btn-availability.unavailable:hover {
+  background: #fecaca;
+}
+
+/* Delete Button */
+.btn-icon-danger {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fee2e2;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-icon-danger:hover {
+  background: #ef4444;
+  transform: scale(1.05);
+}

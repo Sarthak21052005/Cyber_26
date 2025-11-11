@@ -1,38 +1,37 @@
 import React from 'react';
 
-function MenuCard({ item, onEdit, onDelete, onToggleAvailability }) {
+function MenuCard({ item, onDelete, onToggleAvailability }) {
   return (
-    <div className={`menu-card ${!item.is_available ? 'unavailable' : ''}`}>
-      <div className="menu-card-header">
+    <div className="menu-card">
+      <div className="menu-card-body">
         <h3>{item.item_name}</h3>
-        <span className={`availability-badge ${item.is_available ? 'available' : 'unavailable'}`}>
-          {item.is_available ? 'Available' : 'Unavailable'}
-        </span>
-      </div>
-      
-      <p className="menu-description">{item.description}</p>
-      
-      <div className="menu-tags">
-        <span className="tag cuisine-tag">{item.cuisine}</span>
-        <span className="tag category-tag">{item.category}</span>
-      </div>
-      
-      <div className="menu-card-footer">
-        <div className="price-prep">
-          <span className="price">₹{item.price}</span>
-          <span className="prep-time">{item.preparation_time} min</span>
+        <p>{item.description}</p>
+
+        <div className="menu-tags">
+          <span className="tag tag-cuisine">{item.cuisine}</span>
+          <span className="tag tag-category">{item.category}</span>
         </div>
-        
-        <div className="menu-actions">
-          <button className="btn-icon" onClick={() => onEdit(item)} title="Edit">✏️</button>
-          <button 
-            className="btn-icon" 
+
+        <div className="menu-footer">
+          <div className="price">₹{item.price}</div>
+          
+          {/* Use menu_id instead of item_id */}
+          <button
+            className={`btn-availability ${item.is_available ? 'available' : 'unavailable'}`}
             onClick={() => onToggleAvailability(item.menu_id, item.is_available)}
-            title="Toggle Availability"
+            title={item.is_available ? 'Mark as Unavailable' : 'Mark as Available'}
           >
-            {item.is_available ? '🔴' : '🟢'}
+            {item.is_available ? '✓ Available' : '✗ Unavailable'}
           </button>
-          <button className="btn-icon" onClick={() => onDelete(item.menu_id)} title="Delete">🗑️</button>
+
+          {/* Delete Button - Use menu_id */}
+          <button
+            className="btn-icon-danger"
+            onClick={() => onDelete(item.menu_id)}
+            title="Delete Item"
+          >
+            🗑️
+          </button>
         </div>
       </div>
     </div>

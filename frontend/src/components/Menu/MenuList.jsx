@@ -1,18 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { menuAPI } from '../../services/api';
-import MenuCard from './MenuCard';  // ← FIXED PATH
-import MenuForm from './MenuForm';
-// import './Menu.css';
+import MenuCard from './MenuCard';
+import '../../styles/Menu.css';
+import '../../styles/Global.css';
 
 function MenuList() {
   const [menuItems, setMenuItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [selectedCuisine, setSelectedCuisine] = useState('all');
-  const [showForm, setShowForm] = useState(false);
-  const [editItem, setEditItem] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const cuisines = ['all', 'north-indian', 'south-indian', 'chinese', 'italian', 'continental', 'desserts', 'beverages', 'starters'];
+  const cuisines = [
+    'all',
+    'north-indian',
+    'south-indian',
+    'chinese',
+    'italian',
+    'continental',
+    'desserts',
+    'beverages',
+    'starters'
+  ];
 
   useEffect(() => {
     fetchMenuItems();
@@ -29,6 +37,7 @@ function MenuList() {
   const fetchMenuItems = async () => {
     try {
       const response = await menuAPI.getAll();
+      console.log('Menu items fetched:', response.data.data);
       setMenuItems(response.data.data);
       setFilteredItems(response.data.data);
       setLoading(false);
@@ -45,68 +54,60 @@ function MenuList() {
         fetchMenuItems();
       } catch (error) {
         console.error('Error deleting item:', error);
+        alert('Failed to delete item');
       }
     }
   };
 
-  const handleEdit = (item) => {
-    setEditItem(item);
-    setShowForm(true);
-  };
-
   const handleToggleAvailability = async (id, currentStatus) => {
     try {
+      console.log('Toggling availability - ID:', id, 'Current:', currentStatus, 'New:', !currentStatus);
       await menuAPI.toggleAvailability(id, !currentStatus);
       fetchMenuItems();
     } catch (error) {
       console.error('Error toggling availability:', error);
+      alert('Failed to update availability');
     }
   };
 
-  const handleFormClose = () => {
-    setShowForm(false);
-    setEditItem(null);
-    fetchMenuItems();
-  };
-
-  if (loading) return <div className="loading">Loading menu...</div>;
+  if (loading) {
+    return <div className="loading">Loading menu items...</div>;
+  }
 
   return (
-    <div className="menu-container">
-      <div className="menu-header">
+    <div className="container">
+      <div className="page-header">
         <h1>Menu Management</h1>
-        <button className="btn-primary" onClick={() => setShowForm(true)}>Add New Item</button>
       </div>
 
-      <div className="cuisine-filter">
-        {cuisines.map(cuisine => (
+      <div className="filter-container">
+        {cuisines.map((cuisine) => (
           <button
             key={cuisine}
             className={`filter-btn ${selectedCuisine === cuisine ? 'active' : ''}`}
             onClick={() => setSelectedCuisine(cuisine)}
           >
-            {cuisine.replace('-', ' ').toUpperCase()}
+            {cuisine.toUpperCase().replace('-', ' ')}
           </button>
         ))}
       </div>
 
-      <div className="menu-grid">
-        {filteredItems.map(item => (
-          <MenuCard
-            key={item.menu_id}
-            item={item}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            onToggleAvailability={handleToggleAvailability}
-          />
-        ))}
-      </div>
-
-      {showForm && (
-        <MenuForm
-          item={editItem}
-          onClose={handleFormClose}
-        />
+      {filteredItems.length === 0 ? (
+        <div className="empty-state">
+          <h3>No items found</h3>
+          <p>Try selecting a different cuisine</p>
+        </div>
+      ) : (
+        <div className="menu-grid">
+          {filteredItems.map((item) => (
+            <MenuCard
+              key={item.menu_id}
+              item={item}
+              onDelete={handleDelete}
+              onToggleAvailability={handleToggleAvailability}
+            />
+          ))}
+        </div>
       )}
     </div>
   );

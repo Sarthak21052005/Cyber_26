@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { menuAPI, orderAPI } from '../services/api';
+import '../styles/Orders.css';
+import '../styles/Menu.css';
+import '../styles/Forms.css';
+import '../styles/Global.css';
 
 function CreateOrder() {
   const navigate = useNavigate();

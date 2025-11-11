@@ -77,9 +77,8 @@ function MenuList() {
   return (
     <div className="container">
       <div className="page-header">
-        <h1>Menu Management</h1>
+        <h1>Here is the Menu </h1>
       </div>
-
       <div className="filter-container">
         {cuisines.map((cuisine) => (
           <button

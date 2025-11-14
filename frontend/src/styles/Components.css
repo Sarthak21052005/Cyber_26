@@ -1,25 +1,57 @@
+/* Floating Action Button (FAB) */
 .fab {
   position: fixed;
-  right: 2.2rem;
-  bottom: 2.2rem;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #ff9347, #ca3c15 85%);
-  color: #fff;
-  border: none;
+  right: 2rem;
+  bottom: 2rem;
+
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  font-size: 2.2rem;
-  box-shadow: 0 5px 24px rgba(255, 146, 71, 0.24);
-  cursor: pointer;
-  z-index: 1001;
+  border: none;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.14s, box-shadow 0.16s;
+
+  background: linear-gradient(135deg, #ff9347 0%, #ca3c15 85%);
+  color: #ffffff;
+  font-size: 2.2rem;
+  font-weight: 600;
+
+  cursor: pointer;
+  z-index: 1001;
+
+  box-shadow: 0 6px 20px rgba(255, 146, 71, 0.25);
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+              background 0.3s ease;
 }
 
+/* Hover: stronger elevation and warmer gradient */
 .fab:hover {
-  background: linear-gradient(135deg, #ec6d26 10%, #ab2b0b 95%);
-  box-shadow: 0 7px 32px rgba(255, 146, 71, 0.55);
-  transform: scale(1.05);
+  background: linear-gradient(135deg, #ff7b2f 10%, #b83209 95%);
+  transform: scale(1.08);
+  box-shadow: 0 10px 26px rgba(255, 120, 40, 0.55);
+}
+
+/* Active: subtle press feedback */
+.fab:active {
+  transform: scale(0.96);
+  box-shadow: 0 4px 18px rgba(255, 120, 40, 0.35);
+}
+
+/* Keyboard accessibility */
+.fab:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 146, 71, 0.45);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+  .fab {
+    width: 56px;
+    height: 56px;
+    right: 1.4rem;
+    bottom: 1.4rem;
+    font-size: 1.9rem;
+  }
 }
